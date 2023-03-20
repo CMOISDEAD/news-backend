@@ -4,4 +4,5 @@ export interface PostType {
   title: string;
   description: string;
   url: string;
+  created_at: Date;
 }

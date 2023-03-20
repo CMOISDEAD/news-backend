@@ -8,10 +8,11 @@ import { User } from './user.entity';
 export class UsersService {
   constructor(
     @InjectRepository(User) private usersRepository: Repository<User>,
-  ) { }
+  ) {}
 
-  create(user: UserType) {
-    this.usersRepository.save(user);
+  async create(user: UserType) {
+    const response = await this.usersRepository.save(user);
+    return response;
   }
 
   findAll(): Promise<User[]> {
@@ -31,7 +32,7 @@ export class UsersService {
     return this.usersRepository.findOneBy({ id });
   }
 
-  async remove(id: string): Promise<void> {
+  async remove(id: number): Promise<void> {
     await this.usersRepository.delete(id);
   }
 }

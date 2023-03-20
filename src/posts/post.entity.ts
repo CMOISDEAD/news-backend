@@ -1,5 +1,11 @@
 import { User } from 'src/users/user.entity';
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToOne,
+  CreateDateColumn,
+} from 'typeorm';
 import { CommentType } from './interface/comment.interface';
 
 @Entity()
@@ -22,4 +28,7 @@ export class Post {
 
   @Column('int', { array: true, default: [] })
   comments: number[];
+
+  @CreateDateColumn()
+  created_at: Date;
 }

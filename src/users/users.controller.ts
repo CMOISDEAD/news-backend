@@ -5,12 +5,11 @@ import { UsersService } from './users.service';
 
 @Controller('users')
 export class UsersController {
-  constructor(private userService: UsersService) { }
+  constructor(private userService: UsersService) {}
 
   @Post('register')
-  register(@Body() createUser: CreateUserDto): string {
-    this.userService.create(createUser);
-    return `user ${createUser.username} was register successfully`;
+  async register(@Body() createUser: CreateUserDto): Promise<CreateUserDto> {
+    return await this.userService.create(createUser);
   }
 
   @Post('login')
@@ -22,6 +21,11 @@ export class UsersController {
   @Post('get-user')
   async getUser(@Body() res: CreateUserDto): Promise<User> {
     return await this.userService.findById(res.id);
+  }
+
+  @Post('remove')
+  async remove(@Body() user: CreateUserDto) {
+    await this.userService.remove(user.id);
   }
 
   @Get('all')
