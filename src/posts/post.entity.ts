@@ -6,7 +6,7 @@ import {
   OneToOne,
   CreateDateColumn,
 } from 'typeorm';
-import { CommentType } from './interface/comment.interface';
+// import { CommentType } from './interface/comment.interface';
 
 @Entity()
 export class Post {

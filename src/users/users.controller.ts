@@ -19,13 +19,15 @@ export class UsersController {
   }
 
   @Post('get-user')
-  async getUser(@Body() res: CreateUserDto): Promise<User> {
-    return await this.userService.findById(res.id);
+  async getUser(@Body() response: User): Promise<User> {
+    const { id } = response;
+    return await this.userService.findById(id);
   }
 
   @Post('remove')
-  async remove(@Body() user: CreateUserDto) {
-    await this.userService.remove(user.id);
+  async remove(@Body() response: User) {
+    const { id } = response;
+    await this.userService.remove(id);
   }
 
   @Get('all')

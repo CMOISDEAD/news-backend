@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { CommentsModule } from 'src/comments/comments.module';
 import { PostsModule } from 'src/posts/posts.module';
-// import { User } from 'src/users/user.entity';
 import { UserModule } from 'src/users/users.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -16,13 +16,13 @@ import { AppService } from './app.service';
       password: '',
       database: 'hackernews',
       autoLoadEntities: true,
-      // entities: [User],
       synchronize: true,
     }),
     UserModule,
     PostsModule,
+    CommentsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }
